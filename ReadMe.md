@@ -143,6 +143,16 @@ $ cd ~/research_ws/src/xarm_ros
 $ git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git
 ```
 ## 4.4 Obtain and Build the  Dynamixel Workbench package
+| Preparation device |
+|:-----------------|
+| DYNAMIXEL Motor RX-24F | 
+| U2D2 |
+| DXSharingBoard |
+| Robot Cable-X4P(JST Cable) |
+| Robot Cable-X4P(Molex-JST Convert Cable) |
+| MicroB to A Cable |
+| Power Supply |
+
 Download library.
 ```bash
 $ cd ~/research_ws/src/xarm_ros
