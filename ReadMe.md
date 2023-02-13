@@ -3,11 +3,9 @@
 * This packages are for knowledge sharing purposes and are non-commercial.
 * Only Japanese and English are supported. 
 
-[**QiitaLink by RENOX**](https://qiita.com/RENOX)
-
-**Copyright (c) 2018, UFACTORY Inc.**
-
-**Copyright 2023, RENOX**
+[**QiitaLink by RENOX**](https://qiita.com/RENOX)<br>
+**Copyright (c) 2018, UFACTORY Inc.**<br>
+**Copyright 2023, RENOX**<br>
 Subject to the existing rights of third parties, RENOX is the owner of the copyright in this work, and no portion hereof is to be copied, reproduced, or disseminated without the prior written consent of RENOX.
 
 # Contents
