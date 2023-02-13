@@ -4,9 +4,11 @@
 * Only Japanese and English are supported. 
 
 [**QiitaLink by RENOX**](https://qiita.com/RENOX)
-<font color="red">**Copyright (c) 2018, UFACTORY Inc.**</font>
-<font color="red">**Copyright 2023, RENOX**
-Subject to the existing rights of third parties, RENOX is the owner of the copyright in this work, and no portion hereof is to be copied, reproduced, or disseminated without the prior written consent of RENOX.</font>
+
+**Copyright (c) 2018, UFACTORY Inc.**
+
+**Copyright 2023, RENOX**
+Subject to the existing rights of third parties, RENOX is the owner of the copyright in this work, and no portion hereof is to be copied, reproduced, or disseminated without the prior written consent of RENOX.
 
 # Contents
 * [1. Introduction](#1-introduction)
@@ -152,12 +154,12 @@ $ git clone https://github.com/ROBOTIS-GIT/DynamixelSDK.git
 ```
 Setup the library.
 ```bash
-$ cd ~/catkin_ws/src/DynamixelSDK/c++/build/linux64
+$ cd ~/research_ws/src/xarm_ros/DynamixelSDK/c++/build/linux64
 $ make
 ```
 Setup DYNAMIXEL Workbench library.
 ```bash
-$ cd ~/catkin_ws/src/dynamixel-workbench/dynamixel_workbench_toolbox/examples
+$ cd ~/research_ws/src/xarm_ros/dynamixel-workbench/dynamixel_workbench_toolbox/examples
 $ mkdir -p build && cd build
 $ cmake ..
 $ make
@@ -449,5 +451,6 @@ If you run the above command, the version of librviz_visual_tools.so will be upg
 * The kirigami gripper model begins to collapse over time in digital layer experiment.
 
 ---
-<font color="skyblue">**GitLink**</font>
-<font color="black">**Designed by RENOX**</font>
+**GitLink**
+
+**Designed by RENOX**
