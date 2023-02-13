@@ -1,0 +1,32 @@
+<launch>
+  <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
+  <arg name="load_robot_description" default="false"/>
+
+  <!-- The name of the parameter under which the URDF is loaded -->
+  <arg name="robot_description" default="robot_description"/>
+  <arg name="namespace" default="ufactory"/>
+  <arg name="add_kirigami_gripper" default="false" />
+
+  <!-- Load universal robot description format (URDF) -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro
+    --inorder '$(find lite6)/urdf/lite6_with_kirigami_gripper.xacro' limited:=true ros_namespace:=$(arg namespace)"/>
+
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)_semantic" 
+    command="xacro --inorder  '$(find lite6)/srdf/xarm.srdf.xacro' dof:=6 robot_type:=lite
+      add_kirigami_gripper:=$(arg add_kirigami_gripper)"/>
+
+  <!-- The semantic description that corresponds to the URDF -->
+  <!--<param name="$(arg robot_description)_semantic" textfile="$(find lite6)/config/lite6.srdf" /> -->
+  <remap from="~/robot_description_semantic" to="/robot_description_semantic" />
+  <!-- Load updated joint limits (override information from URDF) -->
+  <group ns="$(arg robot_description)_planning">
+    <rosparam command="load" file="$(find lite6)/config/joint_limits.yaml"/>
+  </group>
+
+  <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
+  <group ns="$(arg robot_description)_kinematics">
+    <rosparam command="load" file="$(find lite6)/config/kinematics.yaml"/>
+  </group>
+
+</launch>

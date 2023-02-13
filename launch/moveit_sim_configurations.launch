@@ -1,0 +1,29 @@
+<launch>
+  <arg name="add_kirigami_gripper" default="false" />
+  <arg name="namespace" default="robot_arm_sim"/>
+  <arg name="fake_execution" value="false" /> <!-- If you check motion planning using rviz, set true -->  
+  <arg name="pub_tf" value="true" />
+
+  <!-- lite6 -->
+  <!--<rosparam file="$(find lite6)/config/lite6_params.yaml" command="load" ns="$(arg namespace)"/>
+  <rosparam file="$(find lite6)/config/kirigami_gripper_params.yaml" command="load" ns="$(arg namespace)"/>-->
+  
+  <remap from="/follow_joint_trajectory" to="$(arg namespace)/lite6_traj_controller/follow_joint_trajectory"/>
+
+  <include file="$(find lite6)/launch/moveit_rviz_common.launch">
+    <arg name="jnt_stat_source" value="[/move_group/fake_controller_joint_states]" />
+    <!-- whether to use fake_execution controller to drive the motion -->
+    <arg name="fake_execution" value="$(arg fake_execution)" />
+    <!-- option to publish tf topic or not -->
+    <arg name="pub_tf" value="$(arg pub_tf)" />
+    <!-- NO_GUI_CTRL means that Rviz configuration is just for display purpose, no (Moveit) control panel loaded -->
+    <arg name="NO_GUI_CTRL" value="true"/>
+    <!-- option to show rviz or not -->
+    <arg name="show_rviz" value="true" />
+    <!-- option to load gripper controller in simulation -->
+    <arg name="add_kirigami_gripper" value="$(arg add_kirigami_gripper)" />
+    <arg name="namespace" value="$(arg namespace)" />
+  </include>
+
+
+</launch>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="xarm_srdf">
+  <xacro:macro name="xarm_macro_srdf" params="prefix:='' dof:=7 robot_type:='xarm' add_kirigami_gripper:='false'"> 
+    
+    <xacro:if value="${dof == 6}">
+      <xacro:if value="${robot_type == 'lite'}">
+        <xacro:include filename="$(find lite6)/srdf/_lite6_macro.srdf2.xacro" />
+        <xacro:lite6_macro_srdf prefix="${prefix}" 
+          add_kirigami_gripper="${add_kirigami_gripper}" />
+      </xacro:if>
+    </xacro:if>
+  </xacro:macro>
+</robot>

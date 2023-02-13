@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="kirigami_gripper">
+  <!--
+  <material name="Kirigami_White">
+    <color rgba="1.0 1.0 1.0 0.5"/>
+  </material>
+
+  <material name="Kirigami_Silver">
+    <color rgba="0.753 0.753 0.753 0.5"/>
+  </material>
+
+  <material name="Kirigami_Red">
+    <color rgba="0.549 0.157 0.157 1.0"/>
+  </material>
+
+  <material name="Kirigami_Gray">
+    <color rgba="0.286 0.286 0.286 0.5"/>
+  </material>
+  -->
+  <xacro:include filename="$(find lite6)/urdf/kirigami_gripper.transmission.xacro" />
+  <xacro:include filename="$(find lite6)/urdf/kirigami_gripper_test.gazebo.xacro" />
+  <!--<xacro:include filename="$(find lite6)/urdf/common.gazebo.xacro" />-->
+
+    <link name="base_link">
+    </link>
+    <joint name="base_fixed_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="kirigami_gripper_base"/>
+        <origin xyz="0.000 0.000 0.000" rpy="0 0 0"/>
+    </joint>
+  <link
+    name="kirigami_gripper_base">
+    <inertial>
+      <origin
+        xyz="0.00276 0.0 0.046"
+        rpy="0 0 0" />
+      <mass
+        value="0.295" />
+      <inertia
+        ixx="0.00081394"
+        ixy="5.0000E-08"
+        ixz="2.9410E-07"
+        iyy="0.00081881"
+        iyz="1.1000E-07"
+        izz="0.00022262" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/visual/kirigami_gripper_base.STL" />
+      </geometry>
+      <material name="Kirigami_Red">
+        <color rgba="0.549 0.157 0.157 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/collision/kirigami_gripper_base_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!-- finger_1 -->
+  <joint name="finger1_joint" type="revolute">
+    <origin
+      xyz="0.026 -0.0075 0.141"
+      rpy="-1.5708 3.1415 0" />
+    <parent
+      link="kirigami_gripper_base" />
+    <child
+      link="finger_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.45"
+      upper="0.45"
+      effort="2.5"
+      velocity="1.0"/>
+    <!--<dynamics damping="0.1" friction="0.0"/>
+    <implicitSpringDamper>True</implicitSpringDamper>-->
+  </joint>
+  <xacro:insert_transmission name="finger1_joint" />
+  <link
+    name="finger_1">
+    <inertial>
+      <origin
+        xyz="-0.014 0.0224 0.0075"
+        rpy="0 0 0" />
+      <mass
+        value="0.001" />
+      <inertia
+        ixx="1.2000E-07"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="3.0000E-08"
+        iyz="0.00000"
+        izz="1.4000E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/visual/finger_1.STL" />
+      </geometry>
+      <material name="PET_White">
+        <color rgba="1.0 1.0 1.0 0.5"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/collision/finger_1_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!-- finger_2 -->
+  <joint name="finger2_joint" type="revolute">
+    <origin
+      xyz="-0.012 -0.01444 0.141"
+      rpy="1.5708 0 1.0472" />
+    <parent
+      link="kirigami_gripper_base" />
+    <child
+      link="finger_2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.45"
+      upper="0.45"
+      effort="2.5"
+      velocity="1.0"/>
+    <mimic joint="finger1_joint" multiplier="1"/>
+    <!--<dynamics damping="0.1" friction="0.0"/>
+    <implicitSpringDamper>True</implicitSpringDamper>-->
+  </joint>
+  <xacro:mimic_joint_plugin_gazebo name_prefix="finger2_joint"
+    following_joint="finger1_joint" mimic_joint="finger2_joint"
+    has_pid="false" multiplier="1.0" max_effort="10.0" />
+  <link
+    name="finger_2">
+    <inertial>
+      <origin
+        xyz="-0.014 0.0224 0.0075"
+        rpy="0 0 0" />
+      <mass
+        value="0.001" />
+      <inertia
+        ixx="1.2000E-07"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="3.0000E-08"
+        iyz="0.00000"
+        izz="1.4000E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/visual/finger_2.STL" />
+      </geometry>
+      <material name="PET_White">
+        <color rgba="1.0 1.0 1.0 0.5"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/collision/finger_2_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!-- finger_3 -->
+  <joint name="finger3_joint" type="revolute">
+    <origin
+      xyz="0.001 0.02194 0.141"
+      rpy="1.5708 0 -1.0472" />
+    <parent
+      link="kirigami_gripper_base" />
+    <child
+      link="finger_3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.45"
+      upper="0.45"
+      effort="2.5"
+      velocity="1.0"/>
+    <mimic joint="finger1_joint" multiplier="1"/>
+    <!--<dynamics damping="0.1" friction="0.0"/>
+    <implicitSpringDamper>True</implicitSpringDamper>-->
+  </joint>
+  <xacro:mimic_joint_plugin_gazebo name_prefix="finger3_joint"
+    following_joint="finger1_joint" mimic_joint="finger3_joint"
+    has_pid="false" multiplier="1.0" max_effort="10.0" />
+  <link
+    name="finger_3">
+    <inertial>
+      <origin
+        xyz="-0.014 0.0224 0.0075"
+        rpy="0 0 0" />
+      <mass
+        value="0.001" />
+      <inertia
+        ixx="1.2000E-07"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="3.0000E-08"
+        iyz="0.00000"
+        izz="1.4000E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/visual/finger_3.STL" />
+      </geometry>
+      <material name="PET_White">
+        <color rgba="1.0 1.0 1.0 0.5"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/collision/finger_3_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+</robot>

@@ -1,0 +1,18 @@
+<launch>
+  <arg name="add_kirigami_gripper" default="true" />
+  <arg name="namespace" default="robot_arm_sim"/>
+  <arg name="robot_dof" default="6"/>
+  <arg name="robot_type" default="lite"/>
+
+  <include file="$(find lite6)/launch/moveit_sim_configurations.launch">
+    <arg name="add_kirigami_gripper" value="$(arg add_kirigami_gripper)" />
+    <arg name="namespace" value="$(arg namespace)" />
+  </include>
+  
+  <!-- <remap from="/DOF" to="/xarm/DOF" /> -->
+  <param name="robot_type" type="str" value = "$(arg robot_type)"/>
+  <param name="robot_dof" type="int" value = "$(arg robot_dof)"/>
+  <!-- bring up the simple planner (based on move_group) that provide plan service and execution server -->
+  <node name="xarm_move_group_planner" pkg="xarm_planner" type="xarm_simple_planner" />
+
+</launch>

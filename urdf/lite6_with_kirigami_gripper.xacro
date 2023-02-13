@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="lite6_with_kirigami_gripper_urdf">
+  <xacro:arg name="prefix" default=""/>
+  <xacro:arg name="ros_namespace" default="xarm"/>
+  <xacro:arg name="limited" default="false"/>
+  <xacro:arg name="effort_control" default="false"/>
+  <xacro:arg name="velocity_control" default="false"/>
+
+
+  <!-- load lite6 robot -->
+  <xacro:include filename="$(find lite6)/urdf/lite6_robot_macro.xacro" />
+  
+  <!-- Attach kirigami gripper --> 
+  <xacro:include filename="$(find lite6)/urdf/kirigami_gripper_model.xacro" />
+
+  <xacro:lite6_robot prefix="$(arg prefix)" namespace="$(arg ros_namespace)" limited="$(arg limited)" />
+  <xacro:load_kirigami_gripper attach_to="$(arg prefix)link_eef" />
+
+</robot>  

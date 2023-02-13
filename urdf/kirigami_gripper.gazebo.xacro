@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<!-- ros_control plugin -->
+	<!--<gazebo>
+		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+			<robotNamespace>/kirigami_gripper</robotNamespace>
+			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+		</plugin>
+	</gazebo>-->
+	<xacro:include filename="$(find lite6)/urdf/common.gazebo.xacro" />
+	
+	<xacro:macro name="mimic_joint_plugin_gazebo" params="name_prefix following_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=''">
+		<gazebo>
+			<plugin name="${name_prefix}mimic_joint_plugin" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+				<joint>${following_joint}</joint>
+				<mimicJoint>${mimic_joint}</mimicJoint>
+				<xacro:if value="${has_pid}">                     <!-- if set to true, PID parameters from "/gazebo_ros_control/pid_gains/${mimic_joint}" are loaded -->
+					<hasPID />
+				</xacro:if>
+				<multiplier>${multiplier}</multiplier>
+				<offset>${offset}</offset>
+				<sensitiveness>${sensitiveness}</sensitiveness>   <!-- if absolute difference between setpoint and process value is below this threshold, do nothing; 0.0 = disable [rad] -->
+				<maxEffort>${max_effort}</maxEffort>              <!-- only taken into account if has_pid:=true [Nm] -->
+				<xacro:unless value="${robot_namespace == ''}">
+					<robotNamespace>${robot_namespace}</robotNamespace>
+				</xacro:unless>
+			</plugin>
+		</gazebo>
+  	</xacro:macro>
+
+	<gazebo reference="kirigami_gripper_base">
+		<!--<mu1>0.2</mu1>
+		<mu2>0.2</mu2>-->
+		<material>Gazebo/Red</material>
+		<selfCollide>false</selfCollide>
+	</gazebo>
+
+	<gazebo reference="finger_1">
+		<material>Gazebo/White</material>
+		<selfCollide>false</selfCollide>
+	</gazebo>
+
+	<gazebo reference="finger_2">
+		<material>Gazebo/White</material>
+		<selfCollide>false</selfCollide>
+	</gazebo>
+
+	<gazebo reference="finger_3">
+		<material>Gazebo/White</material>
+		<selfCollide>false</selfCollide>
+	</gazebo>
+
+	<!-- <gazebo reference="measure_link_tcp">
+		<material>Gazebo/Transparent</material>
+		<selfCollide>false</selfCollide>
+	</gazebo> -->
+
+	<gazebo reference="measure_finger1">
+		<material>Gazebo/Transparent</material>
+		<selfCollide>false</selfCollide>
+	</gazebo>
+
+</robot>

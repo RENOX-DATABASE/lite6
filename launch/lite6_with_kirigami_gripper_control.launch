@@ -1,0 +1,36 @@
+<launch>
+
+  <arg name="namespace" default="ufactory"/>
+  <arg name="sim_namespace" default="gazebo"/>
+  <arg name="add_kirigami_gripper" default="false" />
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <!-- Load trajectory controller for xArm by default -->
+  <!--<rosparam unless="$(arg add_kirigami_gripper)" file="$(find lite6)/config/lite6_with_kirigami_gripper_controller.yaml" command="load" ns="$(arg namespace)"/>
+  <node 
+    name="lite6_traj_controller_spawner"
+    pkg="controller_manager"
+    type="controller_manager"
+    respawn="false"
+    output="screen"
+    ns="/$(arg namespace)"
+    args="spawn lite6_traj_controller joint_state_controller"/>-->
+
+  <rosparam if="$(arg add_kirigami_gripper)" file="$(find lite6)/config/kirigami_gripper_params.yaml" command="load" ns="$(arg namespace)"/>
+  <rosparam if="$(arg add_kirigami_gripper)" file="$(find lite6)/config/lite6_with_kirigami_gripper_controller.yaml" command="load" ns="$(arg namespace)"/>
+  <node if="$(arg add_kirigami_gripper)"
+    name="lite6_traj_controller_spawner"
+    pkg="controller_manager"
+    type="controller_manager"
+    respawn="false"
+    output="screen"
+    ns="/$(arg namespace)"
+    args="spawn lite6_traj_controller gripper_position_controller joint_state_controller"/>
+    
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="gazebo_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/$(arg namespace)/$(arg sim_namespace)/joint_states" />
+  </node>
+
+</launch>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg robot_type)$(arg dof)">
+  <!-- parameters -->
+  <xacro:arg name="prefix" default="" />
+  <xacro:arg name="dof" default="7" />
+  <xacro:arg name="robot_type" default="xarm" />
+  <xacro:arg name="add_kirigami_gripper" default="false"/>
+
+  
+  <xacro:include filename="$(find lite6)/srdf/xarm_macro.srdf.xacro" />
+  <xacro:xarm_macro_srdf prefix="$(arg prefix)" dof="$(arg dof)" robot_type="$(arg robot_type)" add_kirigami_gripper="$(arg add_kirigami_gripper)"/>
+  
+
+  <!--<xacro:if value="$(add_gripper)">
+    <xacro:include filename="$(find lite6)/srdf/xarm_macro.srdf.xacro" />
+    <xacro:xarm_macro_srdf prefix="$(arg prefix)" dof="$(arg dof)" robot_type="$(arg robot_type)" add_gripper="$(arg add_gripper)" />
+  </xacro:if>
+  <xacro:unless value="$(add_gripper)">
+    <xacro:if value="$(add_kirigami_gripper)">
+      <xacro:include filename="$(find lite6)/srdf/xarm_macro.srdf.xacro" />
+      <xacro:xarm_macro_srdf prefix="$(arg prefix)" dof="$(arg dof)" robot_type="$(arg robot_type)" add_kirigami_gripper="$(arg add_kirigami_gripper)"/>
+    </xacro:if>
+  </xacro:unless>-->
+
+
+</robot>

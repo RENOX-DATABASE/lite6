@@ -1,0 +1,19 @@
+<launch>
+  <arg name="namespace" default="robot_arm_sim"/>
+  <arg name="add_kirigami_gripper" default="true" />
+
+  <!-- Remap the name space so it can send command to gazebo loaded controller -->
+  <!-- this remap must appear BEFORE move_group launch -->
+  <!--<remap from="/follow_joint_trajectory" to="/$(arg namespace)/lite6_traj_controller/follow_joint_trajectory"/>-->
+  <remap from="/follow_joint_trajectory" to="/$(arg namespace)/lite6_traj_controller/follow_joint_trajectory"/>
+
+  <include file="$(find lite6)/launch/moveit_rviz_common.launch">
+    <arg name="jnt_stat_source" value="[/$(arg namespace)/joint_states]" />
+    <arg name="load_move_group" value="true" />
+    <arg name="pub_tf" value="false" />
+    <arg name="namespace" value="$(arg namespace)" />
+    <arg name="add_kirigami_gripper" default="$(arg add_kirigami_gripper)" />
+  </include>
+
+  
+</launch>

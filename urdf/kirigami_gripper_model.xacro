@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="kirigami_gripper" >
+  <!-- common stuff -->
+  <!--<xacro:include filename="$(find lite6)/urdf/common.gazebo.xacro" />-->
+
+  <!-- xarm_gripper -->
+  <xacro:include filename="$(find lite6)/urdf/kirigami_gripper.urdf.xacro" />
+  <xacro:include filename="$(find lite6)/urdf/kirigami_gripper.transmission.xacro" />
+  <xacro:include filename="$(find lite6)/urdf/kirigami_gripper.gazebo.xacro" />
+
+  <xacro:macro name="load_kirigami_gripper" params="prefix:='' attach_to:='' xyz:='0 0 0' rpy:='0 0 0' ">
+    <xacro:kirigami_gripper_urdf prefix="${prefix}" attach_to="${attach_to}" xyz="${xyz}" rpy="${rpy}" />
+  </xacro:macro>
+
+</robot>

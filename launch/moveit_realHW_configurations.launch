@@ -1,0 +1,24 @@
+<launch>
+  <arg name="arm_dof" />
+  <arg name="robot_ip" />
+  <arg name="show_rviz" default="true" />
+  <arg name="no_gui_plan" default="true" />
+  <arg name="report_type" default="normal" />
+  <arg name="robot_type" default="xarm" />
+  <arg name="ext_ns" default="" />
+  <arg name="add_kirigami_gripper" default="true" />
+  <!--<arg name="add_kirigami_gripper" value="false" />-->
+
+  <!-- lite6 -->
+  <include file="$(find lite6)/launch/realHW_exec.launch">
+    <arg name="robot_ip" value="$(arg robot_ip)" />
+    <!-- load the default move_group planner (not xarm_simple_planner) -->
+    <arg name="show_rviz" value="$(arg show_rviz)" />
+    <!-- NO_GUI_CTRL means that Rviz configuration is just for display purpose, no (Moveit) control panel loaded -->
+    <arg name="no_gui_plan" value="$(arg no_gui_plan)" />
+    <arg name="report_type" value="$(arg report_type)" />
+    <arg name="ext_ns" value="$(arg ext_ns)" />
+    <arg name="add_kirigami_gripper" value="$(arg add_kirigami_gripper)" />
+  </include>
+
+</launch>

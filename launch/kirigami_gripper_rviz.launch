@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<launch>
+	<!-- <param name="robot_description" command="$(find xacro)/xacro.py '$(find robinion_description)/urdf/robinion.xacro'" /> -->
+	  <param name="robot_description" command="$(find xacro)/xacro
+    --inorder '$(find lite6)/urdf/kirigami_gripper_test.urdf.xacro'" />
+
+	<!-- send joint values -->
+	<node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui"/>
+
+	<!-- Combine joint values -->
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+
+	<!-- Show in Rviz -->
+	<node pkg="rviz" type="rviz" name="rviz" args="-d $(find lite6)/launch/kirigami_gripper.rviz"/>
+	<!-- Test other .rviz format
+	<node pkg="rviz" type="rviz" name="rviz" args="-d $(find lite6)/launch/kirigami_gripper_test.rviz"/>
+//Description of the above node setting//
+	I tried to delete the following code in kirigami_gripper.rviz and prepared kirigami_gripper_test.rviz.
+	The following code is inspired https://github.com/ekorudiawan/rg2_simulation.
+	I seemed to work kirigami_gripper_test.rviz fine. Thus, I adopted the format without the following code at moveit.rviz and planner.rviz.
+=====================================
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        base_link:
+          Value: true
+        kirigami_gripper_base:
+          Value: true
+        finger_1:
+          Value: true
+        finger_2:
+          Value: true
+        finger_3:
+          Value: true
+      Marker Alpha: 1
+      Marker Scale: 0.10000000149011612
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: false
+      Tree:
+        base_link:
+          kirigami_gripper_base:
+            finger_1:
+            finger_2:
+            finger_3:
+      Update Interval: 0
+      Value: true
+  Enabled: true
+=====================================
+-->
+</launch>

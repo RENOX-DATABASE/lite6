@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="kirigami_gripper_all">
+  <!-- Color Table
+  <material name="Kirigami_Silver">
+    <color rgba="0.753 0.753 0.753 0.5"/>
+  </material>
+  <material name="Kirigami_Red">
+    <color rgba="0.549 0.157 0.157 1.0"/>
+  </material>
+  <material name="PET_White">
+    <color rgba="1.0 1.0 1.0 0.5"/>
+  </material>
+  <material name="PET_Gray">
+    <color rgba="0.286 0.286 0.286 0.5"/>
+  </material>
+  -->
+  <!--<xacro:include filename="$(find lite6)/urdf/kirigami_gripper.transmission.xacro" />
+  <xacro:include filename="$(find lite6)/urdf/kirigami_gripper.gazebo.xacro" />-->
+
+  <xacro:macro name="kirigami_gripper_all_urdf" params="prefix:='' attach_to:='' rpy:='0 0 0' xyz:='0 0 0' ">
+  <xacro:unless value="${attach_to == ''}">
+    <joint name="${prefix}kirigami_gripper_all_fix" type="fixed">
+      <parent link="${attach_to}"/>
+      <child link="${prefix}kirigami_gripper_all"/>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+    </joint>
+  </xacro:unless>
+  <link
+    name="${prefix}kirigami_gripper_all">
+    <inertial>
+      <origin
+        xyz="0.00276 0.0 0.046"
+        rpy="0 0 0" />
+      <mass
+        value="0.295" />
+      <inertia
+        ixx="0.00081394"
+        ixy="5.0000E-08"
+        ixz="2.9410E-05"
+        iyy="0.00081881"
+        iyz="1.1000E-07"
+        izz="0.00022262" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/visual/kirigami_gripper_all.STL" />
+      </geometry>
+      <material name="Kirigami_Red">
+        <color rgba="0.549 0.157 0.157 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://lite6/meshes/collision/kirigami_gripper_base_collision.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+<!--link_tcp-->
+  <link name="${prefix}link_tcp" />
+  <joint
+    name="${prefix}joint_tcp"
+    type="fixed">
+    <origin
+      xyz="0 0 0.18675"
+      rpy="0 0 0" />
+    <parent
+      link="${prefix}kirigami_gripper_all" />
+    <child
+      link="${prefix}link_tcp" />
+  </joint>
+
+  </xacro:macro>
+
+</robot>

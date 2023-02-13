@@ -1,0 +1,73 @@
+# If you separate namespace between lite6 and kirigami gripper,
+# gazebo ros controller will be overwritten.
+# So namespace is unified between lite6 and kirigami gripper.
+# If gazebo model is unstable, you try to comment out the following all gazebo_ros_control code.
+
+###### lite6 ######
+  #lite6 trajectory controller ------------------------------------------
+# xarm: # namespace
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+  
+lite6_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+      - joint5
+      - joint6
+  constraints:
+      goal_time: 0.5 #default:0.5
+      stopped_velocity_tolerance: 0.05 #default:0.05
+      joint1: {trajectory: 0.1, goal: 0.001} #default:1, 0.01
+      joint2: {trajectory: 0.1, goal: 0.001}
+      joint3: {trajectory: 0.1, goal: 0.001}
+      joint4: {trajectory: 0.1, goal: 0.001}
+      joint5: {trajectory: 0.1, goal: 0.001}
+      joint6: {trajectory: 0.1, goal: 0.001}
+  stop_trajectory_duration: 0
+  state_publish_rate:  25
+  action_monitor_rate: 10
+
+  # No Pid gains specified error fix
+  # Source:lite6_traj_controller.yaml
+# gazebo_ros_control:
+#   pid_gains:
+#     joint1: {p: 1200.0, i: 5.0, d: 10.0}
+#     joint2: {p: 1400.0, i: 5.0, d: 10.0}
+#     joint3: {p: 1200.0, i: 5.0, d: 5.0}
+#     joint4: {p: 850.0, i: 3.0, d: 5.0}
+#     joint5: {p: 500.0, i: 3.0, d: 1.0}
+#     joint6: {p: 500.0, i: 1.0, d: 1.0}
+
+  # No Pid gains specified error fix
+  # Source:lite6_position_controller.yaml
+# gazebo_ros_control:
+#   pid_gains:
+#     joint1: {p: 600, i: 5.0, d: 30, i_clamp: 1}
+#     joint2: {p: 600, i: 5.0, d: 30, i_clamp: 1}
+#     joint3: {p: 600, i: 5.0, d: 30, i_clamp: 1}
+#     joint4: {p: 450.0, i: 5.0, d: 10, i_clamp: 1}
+#     joint5: {p: 300.0, i: 5.0, d: 10, i_clamp: 1}
+#     joint6: {p: 150.0, i: 5.0, d: 10, i_clamp: 1}
+
+
+###### kirigami gripper ######
+  #mimic joint plugin ------------------------------------------
+#kirigami_gripper: # namespace
+  # Publish all joint states
+# joint_state_controller:
+#   type: joint_state_controller/JointStateController
+#   publish_rate: 125
+  # Position Controllers
+gripper_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: finger1_joint
+  pid: {p: 200.0, i: 25.0, d: 60.0}
+# gripper_position_controller:
+#   type: effort_controllers/JointPositionController
+#   joint: finger1_joint
+#   pid: {p: 5.0, i: 0.0, d: 0.0}
