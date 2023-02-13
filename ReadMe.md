@@ -413,7 +413,7 @@ Open the kirigami gripper.
 $ rosservice call /dynamixel_workbench/dynamixel_command '' 1 'Goal_Position' 2048
 ```
 Above position goal value depends on how the gripper is assembled.
-
+![Real_expt](./doc/Real_expt.png) 
 ## 6.2 Digital layer experiment
 First, set the kirigami gripper initail position.
 ```bash
@@ -441,7 +441,7 @@ Open the kirigami gripper.
 ```bash
 $ rostopic pub /robot_arm_sim/gripper_position_controller/command std_msgs/Float64 "data: 0.10"
 ``` 
-
+![Sim_expt](./doc/Sim_expt.png) 
 ## 6.3 Record topic data
 Start recording. If you haven't run launch file yet, run roscore.
 ```bash
