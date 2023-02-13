@@ -131,7 +131,7 @@ $ roslaunch xarm_description lite6_rviz_display.launch
 ```bash
 rm -rf doc dual_xarm6_moveit_config examples xarm5_gripper_moveit_config xarm5_moveit_config xarm6_gripper_moveit_config xarm6_moveit_config xarm7_gripper_moveit_config xarm7_moveit_config xarm_gazebo xarm_gripper xarm_vision ReadMe.md ReadMe_cn.md ReadMe_others.md
 ```
-## 4.2 Obtain the robot_arm package
+## 4.2 Obtain the lite6 package
 ```bash
 $ cd ~/research_ws/src/xarm_ros
 $ git clone https://github.com/RENOX-DATABASE/lite6.git
