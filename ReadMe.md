@@ -145,7 +145,7 @@ $ git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git
 ## 4.4 Obtain and Build the  Dynamixel Workbench package
 | Preparation device |
 |:-----------------|
-| DYNAMIXEL Motor RX-24F | 
+| DYNAMIXEL Motor XM430-W210 (Kirigami gripper) | 
 | U2D2 |
 | DXSharingBoard |
 | Robot Cable-X4P(JST Cable) |
