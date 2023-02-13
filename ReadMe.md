@@ -143,16 +143,6 @@ $ cd ~/research_ws/src/xarm_ros
 $ git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins.git
 ```
 ## 4.4 Obtain and Build the  Dynamixel Workbench package
-| Preparation device |
-|:-----------------|
-| DYNAMIXEL Motor XM430-W210 (Kirigami gripper) | 
-| U2D2 |
-| DXSharingBoard |
-| Robot Cable-X4P(JST Cable) |
-| Robot Cable-X4P(Molex-JST Convert Cable) |
-| MicroB to A Cable |
-| Power Supply |
-
 Download library.
 ```bash
 $ cd ~/research_ws/src/xarm_ros
@@ -365,6 +355,16 @@ install(TARGETS
 )
 ```
 ### 6.1.2 Preparation of DYNAMIXEL motor
+| Preparation device |
+|:-----------------|
+| DYNAMIXEL Motor XM430-W210 (Kirigami gripper) | 
+| U2D2 |
+| DXSharingBoard |
+| Robot Cable-X4P(JST Cable) |
+| Robot Cable-X4P(Molex-JST Convert Cable) |
+| MicroB to A Cable |
+| Power Supply |
+
 Create motor of kirigami gripper setting file.
 ```bash
 $ cd ~/research_ws/src/xarm_ros/xarm_planner/src
