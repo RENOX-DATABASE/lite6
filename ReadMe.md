@@ -192,7 +192,7 @@ Second, run the following command and launch RVIZ for MoveIt.
 ```bash
 $ roslaunch lite6 lite6_with_kirigami_gripper_moveit.launch
 ```
-If you want to move the kirigami gripper in GAZEBO, run the following command.
+If you want to move the kirigami gripper in GAZEBO, run the following command.<br>
 Close the kirigami gripper.
 ```bash
 $ rostopic pub /robot_arm_sim/gripper_position_controller/command std_msgs/Float64 "data: -0.47"
