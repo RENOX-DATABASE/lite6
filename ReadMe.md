@@ -27,8 +27,8 @@ Subject to the existing rights of third parties, RENOX is the owner of the copyr
 
 
 # 1. Introduction
-I developed digital twin system using ROS Noetic. 
-Physical layer is [**UFACTORY Lite 6**](https://github.com/xArm-Developer/xarm_ros) and [**BioLinMech Lab Kirigami Gripper**](http://www.malab.se.ritsumei.ac.jp/top/index_e.php), and digital layer is **GAZEBO**.
+I developed digital twin system using ROS Noetic. <br>
+Physical layer is [**UFACTORY Lite 6**](https://github.com/xArm-Developer/xarm_ros) and [**BioLinMech Lab Kirigami Gripper**](http://www.malab.se.ritsumei.ac.jp/top/index_e.php), and digital layer is **GAZEBO**.<br>
 The gripper has [**DYNAMIXEL XM430-W210**](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/) inside.
 
 # 2. Get started ROS
@@ -395,13 +395,13 @@ $ roslaunch dynamixel_workbench_controllers dynamixel_controllers.launch
 ```
 Second bring up Lite6 and RVIZ for MoveIt.
 ```bash
-$ roslaunch xarm_planner xarm_planner_realHW.launch robot_ip:=<input your lite6 ip>
+$ roslaunch xarm_planner xarm_planner_realHW.launch robot_ip:=<　Input your lite6 ip　>
 ```
 Third, start motion planning if the previous command completed launching
 ```bash
 $ rosrun xarm_planner research_motion_planning
 ```
-Fourth, start the kirigami gripper motion if the previous command completed moving.
+Fourth, start the kirigami gripper motion if the previous command completed moving.<br>
 Close the kirigami gripper.
 ```bash
 $ rosservice call /dynamixel_workbench/dynamixel_command -- '' 1 'Goal_Position' -6144
@@ -430,7 +430,7 @@ Fourth, start motion planning if the previous command completed launching
 ```bash
 $ rosrun xarm_planner research_motion_planning
 ```
-Fifth, start the kirigami gripper motion if the previous command completed moving.
+Fifth, start the kirigami gripper motion if the previous command completed moving.<br>
 Close the kirigami gripper.
 ```bash
 $ rostopic pub /robot_arm_sim/gripper_position_controller/command std_msgs/Float64 "data: -0.47"
@@ -459,6 +459,5 @@ If you run the above command, the version of librviz_visual_tools.so will be upg
 * The kirigami gripper model begins to collapse over time in digital layer experiment.
 
 ---
-**GitLink**
-
+**GitLink**<br>
 **Designed by RENOX**
