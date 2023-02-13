@@ -337,21 +337,21 @@ int main(int argc, char** argv)
 ```
 Add the following code to CMakeLists.txt of xarm_planner package.
 ```txt:CMakeList.txt
-## ADD ##
+###### ADD ######
 add_executable(research_motion_planning src/research_motion_planning.cpp)
 add_dependencies(research_motion_planning ${${PROJECT_NAME}_EXPORTED_TARGETS})
 add_dependencies(research_motion_planning xarm_msgs_generate_messages_cpp)
 target_link_libraries(research_motion_planning ${catkin_LIBRARIES})
-#########
+#################
 
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 install(TARGETS
   xarm_simple_planner
   xarm_simple_planner_test
   xarm_simple_planner_test2
- ## Add ##
+ ###### Add ######
   research_motion_planning
- #########
+ #################
   xarm_gripper_planner
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
@@ -371,7 +371,7 @@ install(TARGETS
 
 Create motor of kirigami gripper setting file.
 ```bash
-$ cd ~/research_ws/src/xarm_ros/xarm_planner/src
+$ cd ~/research_ws/src/xarm_ros/dynamixel_workbench/dynamixel_workbench_controllers/config
 $ touch my_joint_xm430w210_extpos.yaml
 $ gedit my_joint_xm430w210_extpos.yaml
 ```
