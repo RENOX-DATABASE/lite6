@@ -214,6 +214,8 @@ Here chapter explain the procedure of the actual experiment.
 An overview of the system is shown below.
 ![ROS_DT_System](./doc/ROS_DT_System.png) 
 ## 6.1 Physical layer experiment
+The experimental environment is shown below.
+![Expt](./doc/Expt.png) 
 ### 6.1.1 Preparation of motion planning
 Create motion planning cpp file.
 ```bash
