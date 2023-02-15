@@ -349,7 +349,7 @@ install(TARGETS
   xarm_simple_planner
   xarm_simple_planner_test
   xarm_simple_planner_test2
- ###### Add ######
+ ###### ADD ######
   research_motion_planning
  #################
   xarm_gripper_planner
