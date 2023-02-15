@@ -29,8 +29,10 @@ Subject to the existing rights of third parties, RENOX is the owner of the copyr
 # 1. Introduction
 I developed digital twin system using ROS Noetic. <br>
 Physical layer is [**UFACTORY Lite 6**](https://github.com/xArm-Developer/xarm_ros) and [**BioLinMech Lab Kirigami Gripper**](http://www.malab.se.ritsumei.ac.jp/top/index_e.php), and digital layer is **GAZEBO**.<br>
-The gripper has [**DYNAMIXEL XM430-W210**](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/) inside.
-
+The gripper has [**DYNAMIXEL XM430-W210**](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/) inside.<br><br>
+* [Download UFACTORY Studio](https://www.ufactory.cc/ufactory-studio)<br>
+Ufactory Studio for Linux is .Appimage, so [you must give execute permission with chmod](https://virment.com/how-to-use-appimage-linux/).<br>
+* [Download user manual, DH parameter, and 3D files](https://www.ufactory.cc/download-lite6-robot)<br>
 # 2. Get started ROS
 Setup your computer to accept software from packages.ros.org.
 ```bash
