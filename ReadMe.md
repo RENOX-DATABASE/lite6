@@ -3,7 +3,6 @@
 * This packages are for knowledge sharing purposes and are non-commercial.
 * Only Japanese and English are supported. 
 
-aaaaaaaa
 [**QiitaLink by RENOX**](https://qiita.com/RENOX)<br>
 **Copyright (c) 2018, UFACTORY Inc.**<br>
 **Copyright 2023, RENOX**<br>
@@ -30,7 +29,7 @@ Subject to the existing rights of third parties, RENOX is the owner of the copyr
 # 1. Introduction
 I developed digital twin system using ROS Noetic. <br>
 Physical layer is [**UFACTORY Lite 6**](https://github.com/xArm-Developer/xarm_ros) and [**BioLinMech Lab Kirigami Gripper**](http://www.malab.se.ritsumei.ac.jp/top/index_e.php), and digital layer is **GAZEBO**.<br>
-The gripper has [**DYNAMIXEL XM430-W210**](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/) inside.<br><br>
+The gripper has [**DYNAMIXEL XM430-W210**](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/) inside.<br>
 * [Download UFACTORY Studio](https://www.ufactory.cc/ufactory-studio)<br>
 Ufactory Studio for Linux is .Appimage, so [you must give execute permission with chmod](https://virment.com/how-to-use-appimage-linux/).<br>
 * [Download user manual, DH parameter, and 3D files](https://www.ufactory.cc/download-lite6-robot)<br>
@@ -121,8 +120,8 @@ $ catkin_make
 
 ## 3.6 Source the setup script
 ```bash
-echo "source ~/research_ws/devel/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+$ echo "source ~/research_ws/devel/setup.bash" >> ~/.bashrc
+$ source ~/.bashrc
 ```
 
 ## 3.7 Check default environment
@@ -132,7 +131,7 @@ $ roslaunch xarm_description lite6_rviz_display.launch
 # 4. Get started creating research workspace
 ## 4.1 Remove unnecessary packages
 ```bash
-rm -rf doc dual_xarm6_moveit_config examples xarm5_gripper_moveit_config xarm5_moveit_config xarm6_gripper_moveit_config xarm6_moveit_config xarm7_gripper_moveit_config xarm7_moveit_config xarm_gazebo xarm_gripper xarm_vision ReadMe.md ReadMe_cn.md ReadMe_others.md
+$ rm -rf doc dual_xarm6_moveit_config examples xarm5_gripper_moveit_config xarm5_moveit_config xarm6_gripper_moveit_config xarm6_moveit_config xarm7_gripper_moveit_config xarm7_moveit_config xarm_gazebo xarm_gripper xarm_vision ReadMe.md ReadMe_cn.md ReadMe_others.md
 ```
 ## 4.2 Obtain the lite6 package
 ```bash
@@ -400,9 +399,9 @@ First, set dynamixel_workbench_controllers for kirigami gripper.
 ```bash
 $ roslaunch dynamixel_workbench_controllers dynamixel_controllers.launch
 ```
-Second bring up Lite6 and RVIZ for MoveIt.
+Second, bring up Lite6 and RVIZ for MoveIt.
 ```bash
-$ roslaunch xarm_planner xarm_planner_realHW.launch robot_ip:=<　Input your lite6 ip　>
+$ roslaunch xarm_planner xarm_planner_realHW.launch robot_ip:=<　Input your lite6 ip　> robot_dof:=6 robot_type:=lite
 ```
 Third, start motion planning if the previous command completed launching
 ```bash
@@ -450,13 +449,13 @@ $ rostopic pub /robot_arm_sim/gripper_position_controller/command std_msgs/Float
 ## 6.3 Record topic data
 Start recording. If you haven't run launch file yet, run roscore.
 ```bash
-roscore
-rosbag record -a -O bagfilename
+$ roscore
+$ rosbag record -a -O bagfilename
 ```
 Check the recorded data. If you haven't run launch file yet, run roscore.
 ```
-roscore
-rqt_bag bagfilename.bag
+$ roscore
+$ rqt_bag bagfilename.bag
 ```
 
 # 7. Important Notice
@@ -464,6 +463,8 @@ rqt_bag bagfilename.bag
 If you run the above command, the version of librviz_visual_tools.so will be upgraded and you will get an error in xarm_simple_planner.cpp. Comment out the line about rviz_visual_tools to get rid of the error.
 * Problem with srdf file but currently MoveIt works.
 * The kirigami gripper model begins to collapse over time in digital layer experiment.
+* I used a mimic joint to measure the fingertip distance of the kirigami gripper, but this affects the inertia of the gripper, so a large PID value of gripper position controller is set. Therefore, less influential methods should be employed for measurement.
+* To run the physical and digital layers at once, you need to separate them by group tag instead of namespace in your launch file.This makes it equivalent to controlling two robots and prevents configuration of controller overwriting due to namespace differences.
 
 ---
 **GitLink**<br>
