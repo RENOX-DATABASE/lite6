@@ -28,7 +28,7 @@ Subject to the existing rights of third parties, RENOX is the owner of the copyr
 
 # 1. Introduction
 I developed digital twin system using ROS Noetic. <br>
-Physical layer is [**UFACTORY Lite 6**](https://github.com/xArm-Developer/xarm_ros) and [**BioLinMech Lab Kirigami Gripper**](http://www.malab.se.ritsumei.ac.jp/top/index_e.php), and digital layer is **GAZEBO**.<br>
+Physical layer is [**UFACTORY Lite 6**](https://github.com/xArm-Developer/xarm_ros) and [**BioInMech Lab Kirigami Gripper**](http://www.malab.se.ritsumei.ac.jp/top/index_e.php), and digital layer is **GAZEBO**.<br>
 The gripper has [**DYNAMIXEL XM430-W210**](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_workbench/) inside.<br>
 * [Download UFACTORY Studio](https://www.ufactory.cc/ufactory-studio)<br>
 Ufactory Studio for Linux is .Appimage, so [you must give execute permission with chmod](https://virment.com/how-to-use-appimage-linux/).<br>
@@ -461,7 +461,7 @@ $ rqt_bag bagfilename.bag
 # 7. Important Notice
 * `sudo apt-get upgrade` is deprecated.
 If you run the above command, the version of librviz_visual_tools.so will be upgraded and you will get an error in xarm_simple_planner.cpp. Comment out the line about rviz_visual_tools to get rid of the error.
-* Problem with srdf file but currently MoveIt works.
+* Problem with srdf file but currently MoveIt works.You should probably use MoveIt setup assistant.
 * The kirigami gripper model begins to collapse over time in digital layer experiment.
 * I used a mimic joint to measure the fingertip distance of the kirigami gripper, but this affects the inertia of the gripper, so a large PID value of gripper position controller is set. Therefore, less influential methods should be employed for measurement.
 * To run the physical and digital layers at once, you need to separate them by group tag instead of namespace in your launch file.This makes it equivalent to controlling two robots and prevents configuration of controller overwriting due to namespace differences.
